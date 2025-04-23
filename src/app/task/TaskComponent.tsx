@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, TaskInitialState } from "../../redux/model/taskModel";
+import { RootState } from "../../redux/model/taskModel";
 import { FormEvent, useCallback, useRef } from "react";
 import { addTask, completeTask, removeTask } from "../../redux/slices/taskSlice";
 
