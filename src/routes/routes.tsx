@@ -6,9 +6,13 @@ import RouterErrorElement from "./RouterErrorElement";
 import { notificationWrapper } from "../app/higher-order";
 import Notification from "../components/Notification";
 import TwoWayContainer from "../app/two-way";
-import PhotoPull from "../app/photo-pull";
 import RotateComponent from "../components/DummyComponent";
 import TaskComponent from "../app/task/TaskComponent";
+import { getRequest } from "../services/RestService";
+import { lazy } from "react";
+import PhoneDisplayComponent from "../app/phone-display";
+
+const PhotoPull = lazy(() => import("../app/photo-pull"));
 
 const NotificationWrapper = notificationWrapper(Notification);
 
@@ -26,7 +30,8 @@ export const routes = [
         title: "higher order",
       },
       { path: "two-way", element: <TwoWayContainer />, title: "Two way" },
-      { path: "photo-pull", element: <PhotoPull />, title: "Photo pull" },
+      { path: "photo-pull", element: <PhotoPull />, loader: async () => await getRequest(undefined, "/photos"), title: "Photo pull" },
+      { path: "phone-display", element: <PhoneDisplayComponent />, loader: async () => await getRequest("http://localhost:5001", "/phone-number/all"), title: "Phone display" },
       {
         path: "dummy",
         element: <RotateComponent word="technology" />,

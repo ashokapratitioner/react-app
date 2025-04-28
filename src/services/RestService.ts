@@ -2,9 +2,9 @@ import axios from "axios";
 
 const baseUrl = process.env.REACT_APP_API_URL;
 
-const getRequest = (endpoint: string) => {
+const getRequest = (baseUrlInput = baseUrl, endpoint: string) => {
   return axios
-    .get(`${baseUrl}${endpoint}`)
+    .get(`${baseUrlInput}${endpoint}`)
     .then((response) => {
       return response.data;
     })
